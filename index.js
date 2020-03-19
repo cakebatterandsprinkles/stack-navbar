@@ -1,14 +1,35 @@
 const menuPanel = document.querySelector('.panels__main');
 const panels = document.querySelectorAll('.panel');
 const subMenus = document.querySelectorAll('.panel__subMenu');
+const backdrop = document.querySelector('#backdrop');
 
 function toggleHidden() {
   panels.forEach(panel => panel.classList.toggle('hidden'));
 };
 
-menuPanel.addEventListener('click', toggleHidden);
+function handleMenuClick() {
+  toggleHidden();
+  toggleBackdrop();
+}
 
-// addEventListener('click', () => panels.forEach(panel => panel.classList.add('hidden')));
+menuPanel.addEventListener('click', handleMenuClick);
+
+function toggleBackdrop() {
+  backdrop.classList.toggle('visible');
+  console.log('toggleBackdrop');
+}
+
+function hideMenu() {
+  panels.forEach(panel => panel.classList.add('hidden'));
+  console.log('hideMenu');
+}
+
+function handleBackdropClick() {
+  hideMenu();
+  toggleBackdrop();
+}
+
+backdrop.addEventListener('click', handleBackdropClick);
 
 function addOpen(e) {
   this.classList.add('active');
